@@ -27,4 +27,6 @@ public class Paiement {
     private LocalDate datePaiement;
 
     private ModePaiement modePaiement;
-}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_contrat")
+    private Contrat contrat;}
