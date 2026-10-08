@@ -37,10 +37,12 @@ public class Vehicule {
     @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
     private List<Reservation> reservations;
 
-    @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Maintenance> maintenances;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "vehicule_equipements",
             joinColumns = @JoinColumn(name = "id_vehicule"),
